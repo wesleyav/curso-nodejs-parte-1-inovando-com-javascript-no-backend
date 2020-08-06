@@ -43,6 +43,7 @@ module.exports = (app) => {
             .then(livro => 
                 resp.marko(
                     require('../views/livros/form/form.marko'),
+
                     { livro: livro }
                 )
             )
@@ -55,6 +56,15 @@ module.exports = (app) => {
 
         const livroDao = new LivroDao(db);
         livroDao.adiciona(req.body)
+        .then(resp.redirect('/livros'))
+        .catch(erro => console.log(erro));
+    });
+
+    app.put('/livros', function(req, resp) {
+        console.log(req.body);
+
+        const livroDao = new LivroDao(db);
+        livroDao.atualiza(req.body)
         .then(resp.redirect('/livros'))
         .catch(erro => console.log(erro));
     });
