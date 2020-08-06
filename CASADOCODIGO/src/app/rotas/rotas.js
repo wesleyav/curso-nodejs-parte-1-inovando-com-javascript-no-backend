@@ -31,7 +31,7 @@ module.exports = (app) => {
         .catch(erro => console.log(erro));
     });
 
-    app.get('/livros/form', function(req,resp) {
+    app.get('/livros/form', function(req, resp) {
         resp.marko(require('../views/livros/form/form.marko'));
     });
 
